@@ -1,0 +1,205 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #222327;
+  --foreground: #ffffff;
+  --card: #2a2d33;
+  --card-foreground: #ffffff;
+  --popover: #2a2d33;
+  --popover-foreground: #ffffff;
+  --primary: #6F00FF;
+  --primary-foreground: #222327;
+  --secondary: #3a3d43;
+  --secondary-foreground: #ffffff;
+  --muted: #3a3d43;
+  --muted-foreground: #a0a0a0;
+  --accent: #6F00FF;
+  --accent-foreground: #222327;
+  --destructive: #ea580c;
+  --destructive-foreground: #ffffff;
+  --border: #3a3d43;
+  --input: #2a2d33;
+  --ring: #6F00FF;
+  --chart-1: #29fd53;
+  --chart-2: #10b981;
+  --chart-3: #4b5563;
+  --chart-4: #6366f1;
+  --chart-5: #ea580c;
+  --radius: 0.5rem;
+  --sidebar: #2a2d33;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #29fd53;
+  --sidebar-primary-foreground: #222327;
+  --sidebar-accent: #29fd53;
+  --sidebar-accent-foreground: #222327;
+  --sidebar-border: #3a3d43;
+  --sidebar-ring: rgba(41, 253, 83, 0.3);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Magic navigation bar styles based on provided CSS */
+.navigation {
+  width: 320px;
+  height: 70px;
+  background: #fff;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 5px solid var(--background);
+}
+
+.navigation ul {
+  display: flex;
+  position: relative;
+}
+
+.navigation ul li {
+  position: relative;
+  list-style: none;
+  width: 70px;
+  height: 70px;
+  z-index: 1;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  line-height: 75px;
+  font-size: 1.5em;
+  text-align: center;
+  transition: 0.5s;
+  color: var(--background);
+}
+
+.navigation ul li a .icon {
+  transform: translateY(20px);
+}
+
+.navigation ul li.active a .icon {
+  transform: translateY(-12px);
+}
+
+.navigation ul li a .text {
+  position: absolute;
+  color: var(--background);
+  font-weight: 400;
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+  transition: 0.5s;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.navigation ul li.active a .text {
+  opacity: 1;
+  transform: translateY(36px);
+}
+
+.indicator {
+  position: absolute;
+  top: -50%;
+  width: 70px;
+  height: 70px;
+  background: #6F00FF;
+  border-radius: 50%;
+  border: 5px solid var(--background);
+  transition: 0.5s;
+}
+
+.input-border {
+  border: 1px solid var(--background);
+}
+
+.navigation ul li:nth-child(1).active ~ .indicator {
+  transform: translateX(calc(70px * 0));
+}
+
+.navigation ul li:nth-child(2).active ~ .indicator {
+  transform: translateX(calc(70px * 1));
+}
+
+.navigation ul li:nth-child(3).active ~ .indicator {
+  transform: translateX(calc(70px * 2));
+}
+
+.navigation ul li:nth-child(4).active ~ .indicator {
+  transform: translateX(calc(70px * 3));
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+html {
+  scroll-behavior: smooth;
+}
