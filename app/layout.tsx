@@ -7,6 +7,10 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Serwolift',
   description: 'Serwis ładowarek teleskopowych, wózków widłowych i podnośników',
+  icons: {
+    icon: '/favicon.ico',
+  },
+  metadataBase: new URL('https://serwolift.pl'),
 }
 
 export default function RootLayout({
