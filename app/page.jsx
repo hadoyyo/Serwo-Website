@@ -62,7 +62,7 @@ export default function SerwoliftWebsite() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat blur-sm"
           style={{
@@ -72,24 +72,27 @@ export default function SerwoliftWebsite() {
           <div className="absolute inset-0 bg-black/70"></div>
         </div>
 
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-6">
-          {/* Zastąpienie tekstu logo */}
-          <div className="flex justify-center mb-6">
+        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-2 sm:px-6 pb-20 sm:pb-0">
+          <div className="flex justify-center mb-4 sm:mb-6">
             <Image 
               src="/logo.png" 
               alt="Serwolift Logo" 
-              width={300} 
-              height={100}
-              className="object-contain"
+              width={250} 
+              height={80}
+              className="object-contain w-64 sm:w-80"
+              priority
             />
           </div>
-          <h2 className="text-4xl font-bold mb-4 text-balance">Specjalistyczny serwis ładowarek i podestów</h2>
-          <p className="text-xl mb-8 text-balance max-w-2xl mx-auto leading-relaxed">
-            Skupiamy się na naprawach ładowarek teleskopowych, koparek, podestów ruchomych oraz wózków widłowych. Szybko i profesjonalnie przywracamy sprawność Twojego sprzętu.
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-balance">
+            Specjalistyczny serwis ładowarek i podestów
+          </h2>
+          <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-balance max-w-2xl mx-auto leading-relaxed">
+            Skupiamy się na naprawach ładowarek teleskopowych, koparek, podestów ruchomych oraz wózków widłowych. 
+            Szybko i profesjonalnie przywracamy sprawność Twojego sprzętu.
           </p>
           <Button
             size="lg"
-            className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-4 text-lg font-semibold"
+            className="bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg font-semibold"
             onClick={() => scrollToSection("contact")}
           >
             Napisz do nas
@@ -108,7 +111,7 @@ export default function SerwoliftWebsite() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-lg leading-relaxed text-card-foreground mb-6">
-                <strong>Serwolift - Paweł Jóźwik</strong> to wyspecjalizowany serwis zajmujący się wyłącznie naprawą i regeneracją maszyn roboczych. Nasza działalność koncentruje się na:
+                <strong>Serwolift</strong> to wyspecjalizowany serwis zajmujący się wyłącznie naprawą i regeneracją maszyn roboczych. Nasza działalność koncentruje się na:
               </p>
               <ul className="text-lg leading-relaxed text-card-foreground mb-6 space-y-3">
                 <li>• Ładowarkach teleskopowych wszystkich marek</li>
@@ -229,7 +232,7 @@ export default function SerwoliftWebsite() {
             {/* Contact Form */}
             <div>
               <h3 className="text-2xl font-bold mb-6">Skontaktuj się z nami</h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6 form-border p-6 bg-background">
                 <div>
                   <label className="block text-sm font-medium mb-2">Adres E-mail</label>
                   <Input
@@ -245,7 +248,7 @@ export default function SerwoliftWebsite() {
                 <div>
                   <label className="block text-sm font-medium mb-2">Treść wiadomości</label>
                   <Textarea
-                    className="input-border"
+                    className="input-border h-38"
                     placeholder="Opisz problem z maszyną (marka, model, rodzaj usterki)..."
                     rows={5}
                     value={formData.message}
@@ -259,18 +262,18 @@ export default function SerwoliftWebsite() {
                 </Button>
               </form>
 
-              <div className="mt-8 space-y-4">
+              <div className="mt-16 space-y-4">
                 <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-primary" />
-                  <span>biuro@serwolift.pl</span>
+                  <Mail className="w-6 h-6 text-primary" />
+                  <span className="text-xl">biuro@serwolift.pl</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-primary" />
-                  <span>+48 508 209 586</span>
+                  <Phone className="w-6 h-6 text-primary" />
+                  <span className="text-xl">+48 508 209 586</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <MapPin className="w-5 h-5 text-primary" />
-                  <span>Kąkolewnica, woj. lubelskie</span>
+                  <MapPin className="w-6 h-6 text-primary" />
+                  <span className="text-xl">Kąkolewnica, woj. lubelskie</span>
                 </div>
               </div>
             </div>
