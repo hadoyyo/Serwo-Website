@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Home, User, Wrench, Mail, Phone, MapPin, Settings, Truck, Shield, BookOpenText, HandCoins } from "lucide-react"
+import { Home, User, Wrench, Mail, Phone, MapPin, Truck, Info, BookOpenText, HandCoins, Crown, FilePenLine, Calculator } from "lucide-react"
 import Image from "next/image"
 
 export default function SerwoliftWebsite() {
@@ -66,28 +66,30 @@ export default function SerwoliftWebsite() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat blur-sm"
           style={{
-            backgroundImage: `url('/background.png')`,
+            backgroundImage: `url('/background.png')`
           }}
         >
           <div className="absolute inset-0 bg-black/70"></div>
         </div>
+        
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-card via-card/80 to-transparent z-10"></div>
+        <div className="absolute bottom-0 left-0 w-full h-10 backdrop-blur-md z-15"></div>
 
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-2 sm:px-6 pb-20 sm:pb-0">
+        <div className="relative z-20 text-center text-white max-w-4xl mx-auto px-2 sm:px-6 pb-20 sm:pb-0">
           <div className="flex justify-center mb-4 sm:mb-6">
             <Image 
               src="/logo.png" 
               alt="Serwolift Logo" 
-              width={250} 
-              height={80}
-              className="object-contain w-64 sm:w-80"
+              width={341} 
+              height={192}
               priority
             />
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-balance">
-            Specjalistyczny serwis ładowarek i podestów
+            Specjalistyczny serwis UTB
           </h2>
           <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-balance max-w-2xl mx-auto leading-relaxed">
-            Skupiamy się na naprawach ładowarek teleskopowych, koparek, podestów ruchomych oraz wózków widłowych. 
+            Skupiamy się na naprawach ładowarek teleskopowych, podnośników nożycowych, przegubowych, warsztatowych oraz wózków widłowych. 
             Szybko i profesjonalnie przywracamy sprawność Twojego sprzętu.
           </p>
           <Button
@@ -111,18 +113,18 @@ export default function SerwoliftWebsite() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-lg leading-relaxed text-card-foreground mb-6">
-                <strong>Serwolift</strong> to wyspecjalizowany serwis zajmujący się wyłącznie naprawą i regeneracją maszyn roboczych. Nasza działalność koncentruje się na:
+                <strong>Serwolift</strong> to wyspecjalizowany serwis zajmujący się wyłącznie naprawą UTB. Nasza działalność koncentruje się na:
               </p>
               <ul className="text-lg leading-relaxed text-card-foreground mb-6 space-y-3">
                 <li>• Ładowarkach teleskopowych wszystkich marek</li>
-                <li>• Koparkach i maszynach budowlanych</li>
-                <li>• Podestach ruchomych (<b>Haulotte, JLG, Genie</b>)</li>
-                <li>• Wózkach widłowych (<b>STILL, Genie, Linde</b>)</li>
-                <li>• Regeneracji elementów hydrauliki i mechaniki</li>
+                <li>• Podnośnikach nożycowych (<b>Haulotte, JLG, Genie, Skyjack</b>)</li>
+                <li>• Wózkach widłowych (<b>Hangcha, Manitou, Yale, Hyster, Linde</b>)</li>
+                <li>• Podnośnikach przegubowych</li>
+                <li>• Podnośnikach warsztatowych</li>
               </ul>
               <div className="flex items-center gap-4 text-primary">
-                <Shield className="w-8 h-8" />
-                <span className="font-semibold">Konkretna specjalizacja - najwyższa jakość</span>
+                <Info className="w-8 h-8" />
+                <span className="font-semibold text-lg">Wykonujemy zarówno naprawy bieżące, jak i główne.</span>
               </div>
             </div>
 
@@ -138,87 +140,203 @@ export default function SerwoliftWebsite() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-background">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-6">Usługi serwisowe</h2>
-            <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
-          </div>
+<section id="services" className="py-20 bg-background">
+  <div className="max-w-6xl mx-auto px-6">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl font-black mb-6">Usługi</h2>
+      <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
+    </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-card rounded-lg p-8">
-                <div className="flex items-center gap-4 mb-4">
+    <div className="grid md:grid-cols-2 gap-8 mb-12">
 
-                  <h3 className="text-2xl font-bold">Naprawy ładowarek teleskopowych</h3>
-                </div>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  Kompleksowy serwis ładowarek wszystkich marek - naprawy hydrauliki, układów kierowniczych, systemów podwoziowych i elektrycznych.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span>Diagnostyka komputerowa</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span>Naprawy hydrauliki siłowej</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span>Regeneracja elementów (napędów, wysięgników, itp.)</span>
-                  </li>
-                </ul>
-              </div>
-
-            <div className="bg-card rounded-lg p-8">
-                <div className="flex items-center gap-4 mb-4">
-                  <h3 className="text-2xl font-bold">Serwis podestów i wózków</h3>
-                </div>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  Specjalistyczne naprawy podestów ruchomych (Haulotte, JLG, Genie) oraz wózków widłowych (STILL, Linde).
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-accent rounded-full"></div>
-                    <span>Naprawy systemów nośnych</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-accent rounded-full"></div>
-                    <span>Serwis układów bezpieczeństwa</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-accent rounded-full"></div>
-                    <span>Wymiana wyłączników, sterowników, czujników</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-accent rounded-full"></div>
-                    <span>Mobilny serwis na terenie klienta</span>
-                  </li>
-                </ul>
-                </div>
-          </div>
-
-          <div className="bg-card rounded-lg p-8">
-            <h3 className="text-2xl font-bold mb-6 text-center">Dlaczego warto wybrać nasze usługi?</h3>
-            <div className="grid md:grid-cols-4 gap-6">
-              {[
-                { icon: Truck, title: "Mobilność", desc: "Dojeżdżamy do klienta" },
-                { icon: Settings, title: "Specjalizacja", desc: "Tylko maszyny robocze" },
-                { icon: BookOpenText, title: "Doświadczenie", desc: "Wiele lat w branży" },
-                { icon: HandCoins, title: "Konkurencyjna cena", desc: "Jakość w przystępnej cenie" },
-              ].map((item, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <item.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <h4 className="font-semibold mb-2">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+      <div className="bg-card rounded-lg p-8 relative">
+        <div className="absolute top-6 right-6">
+          <Image 
+            src="/udt-logo.png" 
+            alt="Logo UDT" 
+            width={42} 
+            height={42}
+            className="object-contain"
+          />
         </div>
-      </section>
+        <div className="mb-4">
+          <h3 className="text-2xl font-bold">Przeglądy</h3>
+        </div>
+        <p className="text-muted-foreground leading-relaxed mb-4">
+          Dogłębne sprawdzenie urządzeń transportu bliskiego pod kątem bezpieczeństwa i sprawności technicznej.
+        </p>
+        <ul className="space-y-2 text-sm">
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Przeglądy okresowe w obecności konserwatora (UDT)</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Przeglądy konserwacyjne</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Przeglądy UDT i legalizacje</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="bg-card rounded-lg p-8">
+        <div className="flex items-center gap-4 mb-4">
+          <h3 className="text-2xl font-bold">Ładowarki teleskopowe</h3>
+        </div>
+        <p className="text-muted-foreground leading-relaxed mb-4">
+          Kompleksowy serwis wszystkich marek ładowarek teleskopowych.
+        </p>
+        <ul className="space-y-2 text-sm">
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Naprawy hydrauliki siłowej</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Układy kierownicze i podwoziowe</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Diagnostyka komputerowa</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="bg-card rounded-lg p-8">
+        <div className="flex items-center gap-4 mb-4">
+          <h3 className="text-2xl font-bold">Podnośniki nożycowe</h3>
+        </div>
+        <p className="text-muted-foreground leading-relaxed mb-4">
+          Specjalistyczne naprawy podnośników nożycowych marek Haulotte, JLG, Genie, Skyjack.
+        </p>
+        <ul className="space-y-2 text-sm">
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Serwis systemów nośnych</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Naprawy układów bezpieczeństwa</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Wymiana sterowników i czujników</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Diagnostyka elektryczna</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="bg-card rounded-lg p-8">
+        <div className="flex items-center gap-4 mb-4">
+          <h3 className="text-2xl font-bold">Wózki widłowe</h3>
+        </div>
+        <p className="text-muted-foreground leading-relaxed mb-4">
+          Profesjonalny serwis wózków widłowych Hangcha, Manitou, Yale, Hyster, Linde i innych.
+        </p>
+        <ul className="space-y-2 text-sm">
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Naprawy układów napędowych</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Serwis hydrauliki podnoszenia</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Układy elektryczne i bezpieczeństwa</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="bg-card rounded-lg p-8">
+        <div className="flex items-center gap-4 mb-4">
+          <h3 className="text-2xl font-bold">Podnośniki przegubowe</h3>
+        </div>
+        <p className="text-muted-foreground leading-relaxed mb-4">
+          Specjalistyczne naprawy podnośników przegubowych z pełną diagnostyką.
+        </p>
+        <ul className="space-y-2 text-sm">
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Naprawy układów wysięgników</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Serwis systemów stabilizacji</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Kalibracja systemów bezpieczeństwa</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Naprawy układów jezdnych</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="bg-card rounded-lg p-8">
+        <div className="flex items-center gap-4 mb-4">
+          <h3 className="text-2xl font-bold">Podnośniki warsztatowe</h3>
+        </div>
+        <p className="text-muted-foreground leading-relaxed mb-4">
+          Kompleksowy serwis podnośników warsztatowych i maszyn specjalistycznych.
+        </p>
+        <ul className="space-y-2 text-sm">
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Naprawy hydrauliki podnoszenia</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Serwis układów bezpieczeństwa</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Wymiana elementów nośnych</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="bg-card rounded-lg p-8 relative">
+  <FilePenLine className="w-8 h-8 text-primary absolute right-8 top-8" />
+  <h3 className="text-2xl font-bold pr-12">Przygotowanie dokumentacji technicznej</h3>
+</div>
+
+<div className="bg-card rounded-lg p-8 relative">
+  <Calculator className="w-8 h-8 text-primary absolute right-8 top-8" />
+  <h3 className="text-2xl font-bold pr-12">Obliczanie stopnia wykorzystania resursu</h3>
+</div>
+
+    </div>
+
+    <div className="bg-card rounded-lg p-8">
+      <h3 className="text-2xl font-bold mb-6 text-center">Dlaczego warto wybrać nasze usługi?</h3>
+      <div className="grid md:grid-cols-4 gap-6">
+        {[
+          { icon: Truck, title: "Mobilność", desc: "Dojeżdżamy do klienta" },
+          { icon: Crown, title: "Specjalizacja", desc: "UTB to nasza domena" },
+          { icon: BookOpenText, title: "Doświadczenie", desc: "Wiele lat w branży" },
+          { icon: HandCoins, title: "Konkurencyjna cena", desc: "Jakość w przystępnej cenie" },
+        ].map((item, index) => (
+          <div key={index} className="text-center">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <item.icon className="w-8 h-8 text-primary" />
+            </div>
+            <h4 className="font-semibold mb-2">{item.title}</h4>
+            <p className="text-sm text-muted-foreground">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-card">
