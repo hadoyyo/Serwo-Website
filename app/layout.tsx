@@ -1,8 +1,28 @@
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
+import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+
+const supreme = localFont({
+  src: [
+    {
+      path: './fonts/Supreme-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Supreme-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Supreme-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-supreme',
+})
 
 export const metadata: Metadata = {
   title: 'Serwolift',
@@ -20,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className={`${supreme.variable} font-sans`}>
         {children}
         <Analytics />
       </body>

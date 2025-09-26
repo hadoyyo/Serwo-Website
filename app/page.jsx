@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -18,7 +18,7 @@ export default function SerwoliftWebsite() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["home", "about", "services", "contact"]
-      const scrollPosition = window.scrollY + 100
+      const scrollPosition = window.scrollY + 250
 
       for (const section of sections) {
         const element = document.getElementById(section)
@@ -57,6 +57,120 @@ export default function SerwoliftWebsite() {
   const handleNavClick = (sectionId) => {
     setActiveSection(sectionId)
     scrollToSection(sectionId)
+  }
+
+  const ManufacturerLogos = () => {
+    const [hoveredLogo, setHoveredLogo] = useState(null)
+    const [isPaused, setIsPaused] = useState(false)
+    const scrollContainerRef = useRef(null)
+    const scrollPositionRef = useRef(0)
+    const animationRef = useRef(null)
+    
+    const manufacturers = [
+      { name: "Manitou", logo: "/yale-logo.png" },
+      { name: "JLG", logo: "/Skyjack-logo.png" },
+      { name: "Genie", logo: "/Manitou-logo.png" },
+      { name: "Haulotte", logo: "/linde-logo.png" },
+      { name: "Skyjack", logo: "/jlg-logo.png" },
+      { name: "Hangcha", logo: "/hyster-logo.png" },
+      { name: "Yale", logo: "/Genie-Logo.png" },
+      { name: "Hyster", logo: "/Haulotte-logo.png" },
+      { name: "Linde", logo: "/Hangcha-logo.png" }
+    ]
+
+    const duplicatedManufacturers = [...manufacturers, ...manufacturers]
+
+    useEffect(() => {
+      const scrollContainer = scrollContainerRef.current
+      if (!scrollContainer) return
+
+      const scrollSpeed = 0.5
+
+      const animateScroll = () => {
+        if (!isPaused && scrollContainer) {
+          scrollPositionRef.current += scrollSpeed
+          
+          if (scrollPositionRef.current >= scrollContainer.scrollWidth / 2) {
+            scrollPositionRef.current = 0
+          }
+          
+          scrollContainer.scrollLeft = scrollPositionRef.current
+        }
+        
+        animationRef.current = requestAnimationFrame(animateScroll)
+      }
+
+      if (scrollContainer) {
+        animationRef.current = requestAnimationFrame(animateScroll)
+      }
+
+      return () => {
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current)
+        }
+      }
+    }, [isPaused])
+
+    useEffect(() => {
+      return () => {
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current)
+        }
+      }
+    }, [])
+
+    const handleMouseEnter = (index) => {
+      setIsPaused(true)
+      setHoveredLogo(index)
+    }
+
+    const handleMouseLeave = () => {
+      setIsPaused(false)
+      setHoveredLogo(null)
+    }
+
+    return (
+      <div className="w-full bg-card pb-14">
+        <div className="mx-auto">
+          
+          <div 
+            ref={scrollContainerRef}
+            className="flex overflow-hidden relative py-4"
+            style={{ scrollBehavior: 'auto' }}
+          >
+            <div className="flex">
+              {duplicatedManufacturers.map((manufacturer, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 mx-6 transition-all duration-500 ease-out"
+                  style={{ 
+                    width: '180px',
+                    filter: hoveredLogo === index ? 'none' : 'grayscale(100%) brightness(1)',
+                    transform: hoveredLogo === index ? 'scale(1.15)' : 'scale(1)',
+                    opacity: hoveredLogo === index ? '1' : '0.7'
+                  }}
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div className={`p-2 h-28 flex items-center justify-center transition-shadow ${
+                    hoveredLogo === index ? 'drop-shadow-xl' : ''
+                  }`}>
+                    <div className="relative w-full h-full">
+                      <Image 
+                        src={manufacturer.logo} 
+                        alt={manufacturer.name}
+                        fill
+                        className="object-contain p-2"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -128,18 +242,19 @@ export default function SerwoliftWebsite() {
               </div>
             </div>
 
-            <div className="relative border-custom">
+            <div className="relative">
               <img
                 src="/photo.png"
                 alt="Zespół Serwolift przy naprawie ładowarki teleskopowej"
-                className="rounded-lg shadow-lg w-full"
+                className="rounded-lg shadow-lg mx-auto w-120 md:w-full"
               />
             </div>
           </div>
         </div>
       </section>
+      <ManufacturerLogos/>
 
-      {/* Services Section */}
+{/* Services Section */}
 <section id="services" className="py-20 bg-background">
   <div className="max-w-6xl mx-auto px-6">
     <div className="text-center mb-16">
@@ -173,10 +288,6 @@ export default function SerwoliftWebsite() {
           <li className="flex items-center gap-2">
             <div className="w-2 h-2 bg-accent rounded-full"></div>
             <span>Przeglądy konserwacyjne</span>
-          </li>
-          <li className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-accent rounded-full"></div>
-            <span>Przeglądy UDT i legalizacje</span>
           </li>
         </ul>
       </div>
@@ -326,8 +437,8 @@ export default function SerwoliftWebsite() {
           { icon: HandCoins, title: "Konkurencyjna cena", desc: "Jakość w przystępnej cenie" },
         ].map((item, index) => (
           <div key={index} className="text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <item.icon className="w-8 h-8 text-primary" />
+            <div className="flex items-center justify-center mx-auto mb-4">
+              <item.icon className="w-12 h-12 text-primary" />
             </div>
             <h4 className="font-semibold mb-2">{item.title}</h4>
             <p className="text-sm text-muted-foreground">{item.desc}</p>
