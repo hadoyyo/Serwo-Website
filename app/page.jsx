@@ -75,7 +75,14 @@ export default function SerwoliftWebsite() {
       { name: "Hangcha", logo: "/hyster-logo.png" },
       { name: "Yale", logo: "/Genie-Logo.png" },
       { name: "Hyster", logo: "/Haulotte-logo.png" },
-      { name: "Linde", logo: "/Hangcha-logo.png" }
+      { name: "Linde", logo: "/Hangcha-logo.png" },
+      { name: "Still", logo: "/still-logo.png" },
+      { name: "Oil&Steel", logo: "/oil-steel-logo.png" },
+      { name: "Fassi", logo: "/fassi-logo.png" },
+      { name: "Palfinger", logo: "/Palfinger-logo.png" },
+      { name: "Hiab", logo: "/hiab-logo.png" },
+      { name: "Mbiały", logo: "/mb-logo.png" },
+
     ]
 
     const duplicatedManufacturers = [...manufacturers, ...manufacturers]
@@ -231,10 +238,12 @@ export default function SerwoliftWebsite() {
               </p>
               <ul className="text-lg leading-relaxed text-card-foreground mb-6 space-y-3">
                 <li>• Ładowarkach teleskopowych wszystkich marek</li>
-                <li>• Podnośnikach nożycowych (<b>Haulotte, JLG, Genie, Skyjack</b>)</li>
+                <li>• Podnośnikach nożycowych (<b>Haulotte, JLG, Genie, Skyjack, STILL</b>)</li>
                 <li>• Wózkach widłowych (<b>Hangcha, Manitou, Yale, Hyster, Linde</b>)</li>
-                <li>• Podnośnikach przegubowych</li>
+                <li>• Podnośnikach przegubowych (<b>Genie, Oil&Steel</b>)</li>
                 <li>• Podnośnikach warsztatowych</li>
+                <li>• Suwnicach</li>
+                <li>• Hydraulicznych dźwigach samochodowych (HDS)</li>
               </ul>
               <div className="flex items-center gap-4 text-primary">
                 <Info className="w-8 h-8" />
@@ -320,7 +329,7 @@ export default function SerwoliftWebsite() {
           <h3 className="text-2xl font-bold">Podnośniki nożycowe</h3>
         </div>
         <p className="text-muted-foreground leading-relaxed mb-4">
-          Specjalistyczne naprawy podnośników nożycowych marek Haulotte, JLG, Genie, Skyjack.
+          Specjalistyczne naprawy podnośników nożycowych marek Haulotte, JLG, Genie, Skyjack, STILL.
         </p>
         <ul className="space-y-2 text-sm">
           <li className="flex items-center gap-2">
@@ -402,6 +411,10 @@ export default function SerwoliftWebsite() {
         <ul className="space-y-2 text-sm">
           <li className="flex items-center gap-2">
             <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Montaż</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
             <span>Naprawy hydrauliki podnoszenia</span>
           </li>
           <li className="flex items-center gap-2">
@@ -411,6 +424,60 @@ export default function SerwoliftWebsite() {
           <li className="flex items-center gap-2">
             <div className="w-2 h-2 bg-primary rounded-full"></div>
             <span>Wymiana elementów nośnych</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="bg-card rounded-lg p-8">
+        <div className="flex items-center gap-4 mb-4">
+          <h3 className="text-2xl font-bold">Suwnice</h3>
+        </div>
+        <p className="text-muted-foreground leading-relaxed mb-4">
+          Profesjonalne naprawy suwnic pomostowych, bramowych i podwieszanych.
+        </p>
+        <ul className="space-y-2 text-sm">
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Naprawy układów nośnych i jezdnych</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Serwis mechanizmów jazdy i podnoszenia</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
+            <span>Wymiana elementów toru jezdnego</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="bg-card rounded-lg p-8">
+        <div className="flex items-center gap-4 mb-4">
+          <h3 className="text-2xl font-bold">HDS-y</h3>
+        </div>
+        <p className="text-muted-foreground leading-relaxed mb-4">
+          Serwis hydraulicznych dźwigów samochodowych marek Fassi, Palfinger, Hiab, Mbiały i innych.
+        </p>
+        <ul className="space-y-2 text-sm">
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Naprawy hydrauliki wysięgnika</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Serwis układów nośnych i zabezpieczeń</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Diagnostyka układów sterowania</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Naprawy wysięgników teleskopowych</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <span>Kalibracja systemów bezpieczeństwa</span>
           </li>
         </ul>
       </div>
@@ -498,7 +565,7 @@ export default function SerwoliftWebsite() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="w-6 h-6 text-primary" />
-                  <span className="text-xl">+48 508 209 586</span>
+                  <span className="text-xl">+48 608 209 586</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="w-6 h-6 text-primary" />
