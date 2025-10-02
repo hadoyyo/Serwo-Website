@@ -26,7 +26,7 @@ const supreme = localFont({
 
 export const metadata: Metadata = {
   title: 'Serwolift',
-  description: 'Serwis ładowarek teleskopowych, wózków widłowych i podnośników',
+  description: 'Serwis ładowarek teleskopowych, wózków widłowych, suwnic, HDS-ów i podnośników. Przeglądy, przygotowanie dokumentacji technicznej, obliczanie stopnia wykorzystania resursu i wiele więcej',
   icons: {
     icon: '/favicon.ico',
   },

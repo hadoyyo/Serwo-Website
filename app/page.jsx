@@ -4,8 +4,9 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Home, User, Wrench, Mail, Phone, MapPin, Truck, Info, BookOpenText, HandCoins, Crown, FilePenLine, Calculator } from "lucide-react"
+import { Home, User, Wrench, Mail, Phone, MapPin, Truck, Info, BookOpenText, HandCoins, Crown, FilePenLine, Calculator, X } from "lucide-react"
 import Image from "next/image"
+import emailjs from 'emailjs-com'
 
 export default function SerwoliftWebsite() {
   const [activeSection, setActiveSection] = useState("home")
@@ -14,6 +15,13 @@ export default function SerwoliftWebsite() {
     message: "",
     marketing: false,
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false)
+
+  // EmailJS
+  useEffect(() => {
+    emailjs.init("Public Key") 
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,9 +53,39 @@ export default function SerwoliftWebsite() {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+    setIsSubmitting(true)
+
+    try {
+      await emailjs.send(
+        'Service ID', // Service ID
+        'Template ID', // Template ID
+        {
+          email: formData.email,
+          message: formData.message
+        }
+      )
+
+      setFormData({
+        email: "",
+        message: "",
+        marketing: false,
+      })
+      
+      setShowSuccessPopup(true)
+
+      setTimeout(() => {
+        setShowSuccessPopup(false)
+      }, 30000)
+
+    } catch (error) {
+      console.error('Błąd podczas wysyłania wiadomości:', error)
+      alert('Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie.')
+      setShowSuccessPopup(true)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleInputChange = (field, value) => {
@@ -57,6 +95,10 @@ export default function SerwoliftWebsite() {
   const handleNavClick = (sectionId) => {
     setActiveSection(sectionId)
     scrollToSection(sectionId)
+  }
+
+  const closeSuccessPopup = () => {
+    setShowSuccessPopup(false)
   }
 
   const ManufacturerLogos = () => {
@@ -82,7 +124,6 @@ export default function SerwoliftWebsite() {
       { name: "Palfinger", logo: "/Palfinger-logo.png" },
       { name: "Hiab", logo: "/hiab-logo.png" },
       { name: "Mbiały", logo: "/mb-logo.png" },
-
     ]
 
     const duplicatedManufacturers = [...manufacturers, ...manufacturers]
@@ -91,7 +132,7 @@ export default function SerwoliftWebsite() {
       const scrollContainer = scrollContainerRef.current
       if (!scrollContainer) return
 
-      const scrollSpeed = 0.5
+      const scrollSpeed = 0.6
 
       const animateScroll = () => {
         if (!isPaused && scrollContainer) {
@@ -139,7 +180,6 @@ export default function SerwoliftWebsite() {
     return (
       <div className="w-full bg-card pb-14">
         <div className="mx-auto">
-          
           <div 
             ref={scrollContainerRef}
             className="flex overflow-hidden relative py-4"
@@ -182,6 +222,33 @@ export default function SerwoliftWebsite() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Success Popup */}
+      {showSuccessPopup && (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="bg-card rounded-lg p-6 max-w-md w-full shadow-xl border border-border">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold text-green-600">Wiadomość wysłana!</h3>
+            <button
+              onClick={closeSuccessPopup}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <X size={20} />
+            </button>
+          </div>
+          <p className="text-card-foreground mb-4">
+            Dziękujemy za kontakt! Wiadomość została pomyślnie wysłana. 
+            Odpowiemy najszybciej jak to możliwe.
+          </p>
+          <Button
+            onClick={closeSuccessPopup}
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+          >
+            Zamknij
+          </Button>
+        </div>
+      </div>
+    )}
+
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
         <div
@@ -251,12 +318,20 @@ export default function SerwoliftWebsite() {
               </div>
             </div>
 
-            <div className="relative">
-              <img
-                src="/photo.png"
-                alt="Zespół Serwolift przy naprawie ładowarki teleskopowej"
-                className="rounded-lg shadow-lg mx-auto w-120 md:w-full"
-              />
+            <div className="relative flex justify-center md:justify-end">
+              <div className="relative">
+                <div 
+                  className="absolute -bottom-4 -right-4 w-24 h-24 z-0 rounded-lg shadow-lg"
+                  style={{ backgroundColor: '#f59f20' }}
+                ></div>
+                <div className="relative z-10">
+                  <img
+                    src="/photo.jpeg"
+                    alt="Zespół Serwolift przy naprawie ładowarki teleskopowej"
+                    className="rounded-lg shadow-lg w-full max-w-md md:max-w-lg"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -503,12 +578,14 @@ export default function SerwoliftWebsite() {
                 { icon: BookOpenText, title: "Doświadczenie", desc: "Wiele lat w branży" },
                 { icon: HandCoins, title: "Konkurencyjna cena", desc: "Jakość w przystępnej cenie" },
               ].map((item, index) => (
-                <div key={index} className="text-center">
+                <div key={index} className="text-center group">
                   <div className="flex items-center justify-center mx-auto mb-4">
-                    <item.icon className="w-12 h-12 text-primary" />
+                    <div className="relative">
+                      <item.icon className="w-12 h-12 text-primary transition-all duration-300 ease-in-out group-hover:scale-120 group-hover:rotate-10 group-hover:text-accent" />
+                    </div>
                   </div>
-                  <h4 className="font-semibold mb-2">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  <h4 className="font-semibold mb-2 transition-colors duration-300 group-hover:text-primary">{item.title}</h4>
+                  <p className="text-sm text-muted-foreground transition-colors duration-300 group-hover:text-foreground">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -558,6 +635,7 @@ export default function SerwoliftWebsite() {
                       value={formData.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -570,11 +648,16 @@ export default function SerwoliftWebsite() {
                       value={formData.message}
                       onChange={(e) => handleInputChange("message", e.target.value)}
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
 
-                  <Button type="submit" className="w-full">
-                    Wyślij wiadomość
+                  <Button 
+                    type="submit" 
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Wysyłanie..." : "Wyślij wiadomość"}
                   </Button>
                 </form>
 
