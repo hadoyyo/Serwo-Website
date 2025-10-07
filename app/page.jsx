@@ -102,13 +102,13 @@ export default function SerwoliftWebsite() {
   }
 
   const ManufacturerLogos = () => {
-    const [hoveredLogo, setHoveredLogo] = useState(null)
-    const [isPaused, setIsPaused] = useState(false)
-    const scrollContainerRef = useRef(null)
-    const scrollPositionRef = useRef(0)
-    const animationRef = useRef(null)
-    
-    const manufacturers = [
+  const [hoveredLogo, setHoveredLogo] = useState(null)
+  const [isPaused, setIsPaused] = useState(false)
+  const scrollContainerRef = useRef(null)
+  const scrollPositionRef = useRef(0)
+  const animationRef = useRef(null)
+  
+  const manufacturers = [
       { name: "Manitou", logo: "/yale-logo.png" },
       { name: "JLG", logo: "/Skyjack-logo.png" },
       { name: "Genie", logo: "/Manitou-logo.png" },
@@ -178,8 +178,14 @@ export default function SerwoliftWebsite() {
     }
 
     return (
-      <div className="w-full bg-card pb-14">
-        <div className="mx-auto">
+      <div className="w-full bg-card pb-14 relative">
+        {/* Gradient left*/}
+        <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-card to-transparent z-20 pointer-events-none"></div>
+        
+        {/* Gradient right*/}
+        <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-card to-transparent z-20 pointer-events-none"></div>
+        
+        <div className="mx-auto relative">
           <div 
             ref={scrollContainerRef}
             className="flex overflow-hidden relative py-4"
@@ -327,7 +333,7 @@ export default function SerwoliftWebsite() {
                 <div className="relative z-10">
                   <img
                     src="/photo.jpeg"
-                    alt="Zespół Serwolift przy naprawie ładowarki teleskopowej"
+                    alt="Serwolift"
                     className="rounded-lg shadow-lg w-full max-w-md md:max-w-lg"
                   />
                 </div>
