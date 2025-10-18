@@ -64,5 +64,5 @@ $ npm run dev
 ![Screenshot](./ss/ss4.png)
 
 ### Mobile Device
-<img src="./ss/ss10.png" width="49%"/> <img src="./ss/ss5.png" width="49%"/>
-<img src="./ss/ss12.png" width="49%"/> <img src="./ss/ss6.png" width="49%"/>
+<img src="./ss/ss10.png" width="49%"/> <img src="./ss/ss5.jpg" width="49%"/>
+<img src="./ss/ss12.png" width="49%"/> <img src="./ss/ss6.jpg" width="49%"/>
