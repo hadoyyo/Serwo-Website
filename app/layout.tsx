@@ -25,12 +25,36 @@ const supreme = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'Serwolift',
-  description: 'Serwis ładowarek teleskopowych, wózków widłowych, suwnic, HDS-ów i podnośników. Przeglądy, przygotowanie dokumentacji technicznej, obliczanie stopnia wykorzystania resursu i wiele więcej',
+  title: 'SERWOLIFT - Serwis urządzeń transportu bliskiego (UTB)',
+  description: 'Profesjonalny serwis ładowarek teleskopowych, wózków widłowych, podnośników i HDS. Przeglądy UDT i dokumentacja techniczna. Kąkolewnica - Międzyrzec Podlaski',
+  keywords: 'serwis ładowarek, naprawa wózków widłowych, przeglądy UDT, serwis podnośników, serwis HDS, ładowarki teleskopowe, Kąkolewnica',
+  
+  metadataBase: new URL('https://serwolift.pl'),
+  
+  openGraph: {
+    title: 'SERWOLIFT - Serwis urządzeń transportu bliskiego (UTB)',
+    description: 'Profesjonalny serwis UTB: ładowarki teleskopowe, wózki widłowe, podnośniki, suwnice i HDS. Przeglądy UDT, naprawy, dokumentacja techniczna. Dojazd do klienta.',
+    url: 'https://serwolift.pl',
+    siteName: 'Serwolift',
+    type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Serwolift - Specjalistyczny Serwis UTB',
+      },
+    ],
+  },
+  
+  robots: {
+    index: true,
+    follow: true,
+  },
+  
   icons: {
     icon: '/favicon.ico',
   },
-  metadataBase: new URL('https://serwolift.pl'),
 }
 
 export default function RootLayout({

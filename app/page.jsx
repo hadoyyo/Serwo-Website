@@ -242,7 +242,7 @@ export default function SerwoliftWebsite() {
             </button>
           </div>
           <p className="text-card-foreground mb-4">
-            Dziękujemy za kontakt! Wiadomość została pomyślnie wysłana. 
+            Wiadomość została pomyślnie wysłana. 
             Odpowiemy najszybciej jak to możliwe.
           </p>
           <Button
@@ -279,6 +279,7 @@ export default function SerwoliftWebsite() {
               priority
             />
           </div>
+          <h1 className="sr-only">Serwolift - serwis ładowarek teleskopowych, podnośników nożycowych, przegubowych, warsztatowych, wózków widłowych i HDS (UTB). Wykonujemy przeglądy UDT i dokumentację techniczną.</h1>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-balance">
             Specjalistyczny serwis UTB
           </h2>
@@ -288,7 +289,7 @@ export default function SerwoliftWebsite() {
           </p>
           <Button
             size="lg"
-            className="bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg font-semibold"
+            className="cursor-pointer bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg font-semibold"
             onClick={() => scrollToSection("contact")}
           >
             Napisz do nas
@@ -333,7 +334,7 @@ export default function SerwoliftWebsite() {
                 <div className="relative z-10">
                   <img
                     src="/photo.jpeg"
-                    alt="Serwolift"
+                    alt="Serwolift - Serwis UTB"
                     className="rounded-lg shadow-lg w-full max-w-md md:max-w-lg"
                   />
                 </div>
@@ -660,7 +661,7 @@ export default function SerwoliftWebsite() {
 
                   <Button 
                     type="submit" 
-                    className="w-full"
+                    className="w-full cursor-pointer"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? "Wysyłanie..." : "Wyślij wiadomość"}
