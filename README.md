@@ -46,8 +46,6 @@ To run a project locally, you must have Node.js and npm installed.
 > [!IMPORTANT]  
 > *Download guide: [Installing Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)*
 
-You must also have the MongoDB Compass app downloaded or the MongoDB Atlas service configured.
-
 1. Download and extract the Serwo folder.
 2. Navigate to the `Serwo` folder in your terminal.
 3. Install dependencies and launch the app:
