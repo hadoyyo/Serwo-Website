@@ -1,7 +1,7 @@
 # Serwo - One-Page website for a company providing maintenance services for material handling equipment
 
 <div align="center">
-  <img width="80%" src="./public/logo.png"/>
+  <img width="50%" src="./public/logo.png"/>
 </div>
 
 ## Table of Contents
