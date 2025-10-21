@@ -42,6 +42,11 @@ Software versions used for development:
 > Compatibility with earlier versions has not been tested.
 
 ## Setup Instructions
+
+Just go to www.serwolift.pl.
+
+OR
+
 To run a project locally, you must have Node.js and npm installed. 
 > [!IMPORTANT]  
 > *Download guide: [Installing Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)*
