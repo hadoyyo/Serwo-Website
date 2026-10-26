@@ -1,12 +1,131 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, memo } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Home, User, Wrench, Mail, Phone, MapPin, Truck, Info, BookOpenText, HandCoins, Crown, FilePenLine, Calculator, X } from "lucide-react"
 import Image from "next/image"
 import emailjs from 'emailjs-com'
+
+const manufacturers = [
+  { name: "Manitou", logo: "/yale-logo.png" },
+  { name: "JLG", logo: "/Skyjack-logo.png" },
+  { name: "Genie", logo: "/Manitou-logo.png" },
+  { name: "Haulotte", logo: "/linde-logo.png" },
+  { name: "Skyjack", logo: "/jlg-logo.png" },
+  { name: "Hangcha", logo: "/hyster-logo.png" },
+  { name: "Yale", logo: "/Genie-Logo.png" },
+  { name: "Hyster", logo: "/Haulotte-logo.png" },
+  { name: "Linde", logo: "/Hangcha-logo.png" },
+  { name: "Still", logo: "/still-logo.png" },
+  { name: "Oil&Steel", logo: "/oil-steel-logo.png" },
+  { name: "Fassi", logo: "/fassi-logo.png" },
+  { name: "Palfinger", logo: "/Palfinger-logo.png" },
+  { name: "Hiab", logo: "/hiab-logo.png" },
+  { name: "Mbiały", logo: "/mb-logo.png" },
+]
+
+const duplicatedManufacturers = [...manufacturers, ...manufacturers]
+
+const ManufacturerLogos = memo(function ManufacturerLogos() {
+  const [hoveredLogo, setHoveredLogo] = useState(null)
+  const [isPaused, setIsPaused] = useState(false)
+  const scrollContainerRef = useRef(null)
+  const scrollPositionRef = useRef(0)
+  const animationRef = useRef(null)
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current
+    if (!scrollContainer) return
+
+    const scrollSpeed = 0.6
+
+    const animateScroll = () => {
+      if (!isPaused && scrollContainer) {
+        scrollPositionRef.current += scrollSpeed
+
+        const halfWidth = scrollContainer.scrollWidth / 2
+        if (halfWidth > 0 && scrollPositionRef.current >= halfWidth) {
+          scrollPositionRef.current -= halfWidth
+        }
+
+        scrollContainer.scrollLeft = scrollPositionRef.current
+      }
+
+      animationRef.current = requestAnimationFrame(animateScroll)
+    }
+
+    animationRef.current = requestAnimationFrame(animateScroll)
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
+  }, [isPaused])
+
+  const handleMouseEnter = (index) => {
+    setIsPaused(true)
+    setHoveredLogo(index)
+  }
+
+  const handleMouseLeave = () => {
+    if (scrollContainerRef.current) {
+      scrollPositionRef.current = scrollContainerRef.current.scrollLeft
+    }
+    setIsPaused(false)
+    setHoveredLogo(null)
+  }
+
+  return (
+    <div className="w-full bg-card pb-14 relative">
+      {/* Gradient left*/}
+      <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-card to-transparent z-20 pointer-events-none"></div>
+
+      {/* Gradient right*/}
+      <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-card to-transparent z-20 pointer-events-none"></div>
+
+      <div className="mx-auto relative">
+        <div
+          ref={scrollContainerRef}
+          className="flex overflow-hidden relative py-4"
+          style={{ scrollBehavior: 'auto' }}
+        >
+          <div className="flex">
+            {duplicatedManufacturers.map((manufacturer, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 mx-6 transition-all duration-500 ease-out"
+                style={{
+                  width: '180px',
+                  filter: hoveredLogo === index ? 'none' : 'grayscale(100%) brightness(1)',
+                  transform: hoveredLogo === index ? 'scale(1.15)' : 'scale(1)',
+                  opacity: hoveredLogo === index ? '1' : '0.7'
+                }}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div className={`p-2 h-28 flex items-center justify-center transition-shadow ${
+                  hoveredLogo === index ? 'drop-shadow-xl' : ''
+                }`}>
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={manufacturer.logo}
+                      alt={manufacturer.name}
+                      fill
+                      className="object-contain p-2"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+})
 
 export default function SerwoliftWebsite() {
   const [activeSection, setActiveSection] = useState("home")
@@ -101,131 +220,6 @@ export default function SerwoliftWebsite() {
     setShowSuccessPopup(false)
   }
 
-  const ManufacturerLogos = () => {
-  const [hoveredLogo, setHoveredLogo] = useState(null)
-  const [isPaused, setIsPaused] = useState(false)
-  const scrollContainerRef = useRef(null)
-  const scrollPositionRef = useRef(0)
-  const animationRef = useRef(null)
-  
-  const manufacturers = [
-      { name: "Manitou", logo: "/yale-logo.png" },
-      { name: "JLG", logo: "/Skyjack-logo.png" },
-      { name: "Genie", logo: "/Manitou-logo.png" },
-      { name: "Haulotte", logo: "/linde-logo.png" },
-      { name: "Skyjack", logo: "/jlg-logo.png" },
-      { name: "Hangcha", logo: "/hyster-logo.png" },
-      { name: "Yale", logo: "/Genie-Logo.png" },
-      { name: "Hyster", logo: "/Haulotte-logo.png" },
-      { name: "Linde", logo: "/Hangcha-logo.png" },
-      { name: "Still", logo: "/still-logo.png" },
-      { name: "Oil&Steel", logo: "/oil-steel-logo.png" },
-      { name: "Fassi", logo: "/fassi-logo.png" },
-      { name: "Palfinger", logo: "/Palfinger-logo.png" },
-      { name: "Hiab", logo: "/hiab-logo.png" },
-      { name: "Mbiały", logo: "/mb-logo.png" },
-    ]
-
-    const duplicatedManufacturers = [...manufacturers, ...manufacturers]
-
-    useEffect(() => {
-      const scrollContainer = scrollContainerRef.current
-      if (!scrollContainer) return
-
-      const scrollSpeed = 0.6
-
-      const animateScroll = () => {
-        if (!isPaused && scrollContainer) {
-          scrollPositionRef.current += scrollSpeed
-          
-          if (scrollPositionRef.current >= scrollContainer.scrollWidth / 2) {
-            scrollPositionRef.current = 0
-          }
-          
-          scrollContainer.scrollLeft = scrollPositionRef.current
-        }
-        
-        animationRef.current = requestAnimationFrame(animateScroll)
-      }
-
-      if (scrollContainer) {
-        animationRef.current = requestAnimationFrame(animateScroll)
-      }
-
-      return () => {
-        if (animationRef.current) {
-          cancelAnimationFrame(animationRef.current)
-        }
-      }
-    }, [isPaused])
-
-    useEffect(() => {
-      return () => {
-        if (animationRef.current) {
-          cancelAnimationFrame(animationRef.current)
-        }
-      }
-    }, [])
-
-    const handleMouseEnter = (index) => {
-      setIsPaused(true)
-      setHoveredLogo(index)
-    }
-
-    const handleMouseLeave = () => {
-      setIsPaused(false)
-      setHoveredLogo(null)
-    }
-
-    return (
-      <div className="w-full bg-card pb-14 relative">
-        {/* Gradient left*/}
-        <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-card to-transparent z-20 pointer-events-none"></div>
-        
-        {/* Gradient right*/}
-        <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-card to-transparent z-20 pointer-events-none"></div>
-        
-        <div className="mx-auto relative">
-          <div 
-            ref={scrollContainerRef}
-            className="flex overflow-hidden relative py-4"
-            style={{ scrollBehavior: 'auto' }}
-          >
-            <div className="flex">
-              {duplicatedManufacturers.map((manufacturer, index) => (
-                <div
-                  key={index}
-                  className="flex-shrink-0 mx-6 transition-all duration-500 ease-out"
-                  style={{ 
-                    width: '180px',
-                    filter: hoveredLogo === index ? 'none' : 'grayscale(100%) brightness(1)',
-                    transform: hoveredLogo === index ? 'scale(1.15)' : 'scale(1)',
-                    opacity: hoveredLogo === index ? '1' : '0.7'
-                  }}
-                  onMouseEnter={() => handleMouseEnter(index)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <div className={`p-2 h-28 flex items-center justify-center transition-shadow ${
-                    hoveredLogo === index ? 'drop-shadow-xl' : ''
-                  }`}>
-                    <div className="relative w-full h-full">
-                      <Image 
-                        src={manufacturer.logo} 
-                        alt={manufacturer.name}
-                        fill
-                        className="object-contain p-2"
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-screen bg-background">
       {/* Success Popup */}
@@ -258,7 +252,7 @@ export default function SerwoliftWebsite() {
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat blur-sm"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat blur-[3px] md:blur-sm"
           style={{
             backgroundImage: `url('/background.png')`
           }}
@@ -708,7 +702,7 @@ export default function SerwoliftWebsite() {
       <footer className="bg-primary text-primary-foreground py-8 pb-20">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h3 className="text-2xl font-bold mb-2">Serwolift - Paweł Jóźwik</h3>
-          <p className="mb-4 pb-10">2025 Serwolift. Wszystkie prawa zastrzeżone.</p>
+          <p className="mb-4 pb-10">2026 Serwolift. Wszystkie prawa zastrzeżone.</p>
         </div>
       </footer>
 
